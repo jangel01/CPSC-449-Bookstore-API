@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "6452df1b790b5f84a6061c74"
+  },
+  "title": "My Book",
+  "author": "Someone",
+  "description": "This is a sample book",
+  "price": 1.99,
+  "stock": 10,
+  "sales": 1
+},{
+  "_id": {
+    "$oid": "64597fef66b96d943c73403e"
+  },
+  "title": "My Book2",
+  "author": "Someone",
+  "description": "This is a sample book2",
+  "price": 2.99,
+  "stock": 200,
+  "sales": 2
+},{
+  "_id": {
+    "$oid": "645c0982e749dae0b40a1fd4"
+  },
+  "title": "My Book3",
+  "author": "Someone3",
+  "description": "This is a sample book3",
+  "price": 3.99,
+  "stock": 30,
+  "sales": 3
+},{
+  "_id": {
+    "$oid": "645c0996e749dae0b40a1fd6"
+  },
+  "title": "My Book4",
+  "author": "Someone4",
+  "description": "This is a sample book4",
+  "price": 4.99,
+  "stock": 40,
+  "sales": 4
+},{
+  "_id": {
+    "$oid": "645c09a9e749dae0b40a1fd8"
+  },
+  "title": "My Book5",
+  "author": "Someone5",
+  "description": "This is a sample book5",
+  "price": 5.99,
+  "stock": 50,
+  "sales": 5
+},{
+  "_id": {
+    "$oid": "645c1505e749dae0b40a1fda"
+  },
+  "title": "My Book6",
+  "author": "Someone6",
+  "description": "This is a sample book6",
+  "price": 6.99,
+  "stock": 50,
+  "sales": 5
+},{
+  "_id": {
+    "$oid": "645c16a5e749dae0b40a1fdc"
+  },
+  "title": "My Book7",
+  "author": "Someone7",
+  "description": "This is a sample book7",
+  "price": 7.99,
+  "stock": 70,
+  "sales": 2
+},{
+  "_id": {
+    "$oid": "645c16bde749dae0b40a1fde"
+  },
+  "title": "My Book8",
+  "author": "Someone8",
+  "description": "This is a sample book8",
+  "price": 2.99,
+  "stock": 20,
+  "sales": 8
+},{
+  "_id": {
+    "$oid": "645c18cbe749dae0b40a1fe0"
+  },
+  "title": "My Book9",
+  "author": "Someone9",
+  "description": "This is a sample book9",
+  "price": 2.99,
+  "stock": 0,
+  "sales": 0
+}]
