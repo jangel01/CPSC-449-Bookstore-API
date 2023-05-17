@@ -93,3 +93,8 @@ async def update_book(todo: Todo, book_id:str=Path(...,min_length=24, max_length
 async def delete_book(book_id:str=Path(...,min_length=24, max_length=24)):
     todo = collection.find_one_and_delete({"_id": ObjectId(book_id)})
     return {"data": todo}
+
+@app_router.get("/search")
+async def search_book(title: str, author: str, minPrice: float, maxPrice: float):
+    todo = todos_serializer(collection.find({"title": title, "author": author, "price": {"$gte": minPrice, "$lte": maxPrice}}))
+    return {"data": todo}
