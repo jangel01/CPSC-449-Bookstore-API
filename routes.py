@@ -78,7 +78,13 @@ async def get_todos_top_author():
     return topList
 
 @app_router.post("/books")
-async def create_todos(todo: Todo):
+async def insert_book(todo: Todo):
     todo = todo.dict()
     todo = todo_serializer(collection.insert_one(dict(todo)))
-    return {"status": "ok", "data": todo}
+    return {"data": todo}
+
+@app_router.put("/books/{book_id}")
+async def update_book(todo: Todo, book_id:str=Path(...,min_length=24, max_length=24)):
+    todo = todo.dict()
+    todo = todo_serializer(collection.find_one_and_update({"_id": ObjectId(book_id)}, {"$set": dict(todo)}, return_document=True))
+    return {"data": todo}
