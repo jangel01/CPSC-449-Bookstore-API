@@ -76,3 +76,9 @@ async def get_todos_top_author():
         if (x == 5): break
 
     return topList
+
+@app_router.post("/books")
+async def create_todos(todo: Todo):
+    todo = todo.dict()
+    todo = todo_serializer(collection.insert_one(dict(todo)))
+    return {"status": "ok", "data": todo}
