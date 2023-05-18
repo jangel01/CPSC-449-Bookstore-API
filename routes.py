@@ -46,17 +46,19 @@ async def get_todos_best_seller():
 
     #mongosh query for best seller
     #db.catalog.aggregate([{"$group": {"_id": "$sales", "titles": {"$push": "$title"}}}, {"$sort": {"_id" : -1}}, {"$limit" : 5}])
+    #db.catalog.aggregate([{"$group": {"_id": "$title", "author": {"$push": "$author"}, "sales": {"$push": "$sales"}}}, {"$sort": {"sales" : -1}}, {"$limit" : 5}])
     #db.catalog.aggregate( [{"$unwind": "$title" }, { $group: { _id: "$sales", title: { $topN: { output: ["$title", "$sales"], sortBy: { "sale": -1 }, n : 5 } } } }, {"$sort": {"_id" : -1}}, {"$limit" : 5}])
     
-    pipeline = [{"$group": {"_id": "$sales", "title": {"$push": "$title"}}}, {"$sort": {"_id" : -1}}, {"$limit" : 5}]
+    #pipeline = [{"$group": {"_id": "$sales", "title": {"$push": "$title"}}}, {"$sort": {"_id" : -1}}, {"$limit" : 5}]
+    pipeline = [{"$group": {"_id": "$title", "author": {"$push": "$author"}, "sales": {"$push": "$sales"}}}, {"$sort": {"sales" : -1}}, {"$limit" : 5}]
     bestSeller = collection.aggregate(pipeline)
     bestList = ""
     x = 1
     for item in bestSeller:
-        print(item)
-        bestList = bestList + str(item) + "<br>"
-        x = x +1
+        #print(item)
+        bestList = bestList + str(item)
         if (x == 5): break
+        else: x = x + 1
 
     return bestList
 
@@ -70,10 +72,11 @@ async def get_todos_top_author():
     topList = ""
     x = 1
     for item in topAuthors:
-        print(item)
-        topList = topList + str(item) + "<br>"
-        x = x +1
+        #print(item)
+        topList = topList + str(item)
+       
         if (x == 5): break
+        else:  x = x +1
 
     return topList
 
