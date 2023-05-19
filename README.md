@@ -146,6 +146,7 @@ Expected Response:
 ```
 ### POST /books -- Add a new book to the store
 Paramters: None
+
 Request Body:
 ```
 {
@@ -173,3 +174,92 @@ Expected Response:
 }
 ```
 
+### PUT /books/{book_id} - Update an existing book by ID
+Paramters: 24 character string (e.g 646803e05a4d484aaea8ded8)
+
+Request Body:
+```
+{
+  "title": "My Book12",
+  "author": "Someone10",
+  "description": "This is an updated sample book 12",
+  "price": 0,
+  "stock": 0,
+  "sales": 0
+}
+```
+
+Expected Response:
+```
+{
+  "data": {
+    "id": "646803e05a4d484aaea8ded8",
+    "title": "My Book12",
+    "author": "Someone10",
+    "description": "This is an updated sample book 12",
+    "price": 0,
+    "stock": 0,
+    "sales": 0
+  }
+}
+```
+
+### DELETE /books/{book_id} -- Delete a book from the store by ID
+Paramters: 24 character string (e.g 646803e05a4d484aaea8ded8)
+
+Expected Response (shows deleted book):
+```
+{
+  "data": {
+    "id": "646803e05a4d484aaea8ded8",
+    "title": "My Book12",
+    "author": "Someone10",
+    "description": "This is an updated sample book 12",
+    "price": 0,
+    "stock": 0,
+    "sales": 0
+  }
+}
+```
+
+### GET /search?title={}&author={}&min_price={}&max_price={} -- Search by title, author, minimum price, and maximum price
+Paramters: You can leave all the paramters empty, search by one paramter, or by all paramters
+
+Example 1:
+
+Paramters: author = Someone9
+
+Expected Response:
+```
+{
+  "data": [
+    {
+      "id": "645c18cbe749dae0b40a1fe0",
+      "title": "My Book9",
+      "author": "Someone9",
+      "description": "This is a sample book9",
+      "price": 2.99,
+      "stock": 0,
+      "sales": 0
+    },
+    {
+      "id": "6467e7d3bdc581f6e78220da",
+      "title": "My Book10",
+      "author": "Someone9",
+      "description": "This is a sample book10",
+      "price": 1.99,
+      "stock": 10,
+      "sales": 1
+    },
+    {
+      "id": "6467e815bdc581f6e78220db",
+      "title": "My Book11",
+      "author": "Someone9",
+      "description": "This is a sample book11",
+      "price": 0.99,
+      "stock": 5,
+      "sales": 0
+    }
+  ]
+}
+```
