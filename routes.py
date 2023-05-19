@@ -5,6 +5,7 @@ from schema import todo_serializer, todos_serializer
 from bson.objectid import ObjectId
 from fastapi.responses import HTMLResponse
 from fastapi import HTTPException, status
+import re
 
 app_router = APIRouter()
 @app_router.get("/")
@@ -92,14 +93,13 @@ async def search_book(title: str = None, author: str = None, minPrice: float = N
     query = {}
     
     if title is not None:
-        query["title"] = title
+        query["title"] = {"$regex": re.compile(title, re.IGNORECASE)}
     if author is not None:
-        query["author"] = author
+        query["author"] = {"$regex": re.compile(author, re.IGNORECASE)}
     if minPrice is not None:
         query["price"] = {"$gte": minPrice}
     if maxPrice is not None:
         query["price"] = {"$lte": maxPrice}
 
     todo = todos_serializer(collection.find(query))
-    # todo = todos_serializer(collection.find({"title": title, "author": author, "price": {"$gte": minPrice, "$lte": maxPrice}}))
     return {"data": todo}
