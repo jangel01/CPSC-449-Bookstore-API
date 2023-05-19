@@ -99,7 +99,10 @@ async def search_book(title: str = None, author: str = None, minPrice: float = N
     if minPrice is not None:
         query["price"] = {"$gte": minPrice}
     if maxPrice is not None:
-        query["price"] = {"$lte": maxPrice}
-
+        if "price" in query:
+            query["price"]["$lte"] = maxPrice
+        else:
+            query["price"] = {"$lte": maxPrice}
+    
     todo = todos_serializer(collection.find(query))
     return {"data": todo}
