@@ -67,61 +67,8 @@ Expected Response:
       "stock": 50,
       "sales": 5
     },
-    {
-      "id": "645c1505e749dae0b40a1fda",
-      "title": "My Book6",
-      "author": "Someone6",
-      "description": "This is a sample book6",
-      "price": 6.99,
-      "stock": 50,
-      "sales": 5
-    },
-    {
-      "id": "645c16a5e749dae0b40a1fdc",
-      "title": "My Book7",
-      "author": "Someone7",
-      "description": "This is a sample book7",
-      "price": 7.99,
-      "stock": 70,
-      "sales": 2
-    },
-    {
-      "id": "645c16bde749dae0b40a1fde",
-      "title": "My Book8",
-      "author": "Someone8",
-      "description": "This is a sample book8",
-      "price": 2.99,
-      "stock": 20,
-      "sales": 8
-    },
-    {
-      "id": "645c18cbe749dae0b40a1fe0",
-      "title": "My Book9",
-      "author": "Someone9",
-      "description": "This is a sample book9",
-      "price": 2.99,
-      "stock": 0,
-      "sales": 0
-    },
-    {
-      "id": "6467e7d3bdc581f6e78220da",
-      "title": "My Book10",
-      "author": "Someone9",
-      "description": "This is a sample book10",
-      "price": 1.99,
-      "stock": 10,
-      "sales": 1
-    },
-    {
-      "id": "6467e815bdc581f6e78220db",
-      "title": "My Book11",
-      "author": "Someone9",
-      "description": "This is a sample book11",
-      "price": 0.99,
-      "stock": 5,
-      "sales": 0
-    }
-  ]
+    ...
+   ]
 }
 ```
 
@@ -223,7 +170,9 @@ Expected Response (shows deleted book):
 ```
 
 ### GET /search?title={}&author={}&min_price={}&max_price={} -- Search by title, author, minimum price, and maximum price
-Paramters: You can leave all the paramters empty, search by one paramter, or by all paramters
+Paramters: You can leave all the paramters empty, search by one paramter, or by all paramters. Note that title and author values don't have to exactly match as we are using regex
+
+--
 
 Example 1:
 
@@ -262,4 +211,56 @@ Expected Response:
     }
   ]
 }
+```
+
+--
+
+Example 2:
+
+Paramters: author = Someone9, minPrice = 1.0, maxPrice = 2.0
+
+Expected Response:
+```
+{
+  "data": [
+    {
+      "id": "6467e7d3bdc581f6e78220da",
+      "title": "My Book10",
+      "author": "Someone9",
+      "description": "This is a sample book10",
+      "price": 1.99,
+      "stock": 10,
+      "sales": 1
+    }
+  ]
+}
+```
+
+### GET /inventory -- Get total stock of books
+Paramters: none
+
+Expected response:
+```
+[
+  {
+    "_id": null,
+    "sumOfBooks": 485
+  }
+]
+```
+
+### GET /bestSeller -- Get top 5 best selling books
+Paramters: none
+
+Expected response:
+```
+{'_id': 'My Book8', 'author': ['Someone8'], 'sales': [8]}{'_id': 'My Book5', 'author': ['Someone5'], 'sales': [5]}{'_id': 'My Book6', 'author': ['Someone6'], 'sales': [5]}{'_id': 'My Book4', 'author': ['Someone4'], 'sales': [4]}{'_id': 'My Book3', 'author': ['Someone3'], 'sales': [3]}
+```
+
+## GET /topAuthors -- Get top 5 authors with most boosk in stock
+Paramters: none
+
+Expected Response:
+```
+{'_id': 'Someone', 'countStock': 210}{'_id': 'Someone7', 'countStock': 70}{'_id': 'Someone6', 'countStock': 50}{'_id': 'Someone5', 'countStock': 50}{'_id': 'Someone4', 'countStock': 40}
 ```
