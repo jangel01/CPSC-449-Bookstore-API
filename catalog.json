@@ -88,4 +88,24 @@
   "price": 2.99,
   "stock": 0,
   "sales": 0
+},{
+  "_id": {
+    "$oid": "6467e7d3bdc581f6e78220da"
+  },
+  "title": "My Book10",
+  "author": "Someone9",
+  "description": "This is a sample book10",
+  "price": 1.99,
+  "stock": 10,
+  "sales": 1
+},{
+  "_id": {
+    "$oid": "6467e815bdc581f6e78220db"
+  },
+  "title": "My Book11",
+  "author": "Someone9",
+  "description": "This is a sample book11",
+  "price": 0.99,
+  "stock": 5,
+  "sales": 0
 }]
