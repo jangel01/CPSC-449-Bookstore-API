@@ -83,13 +83,14 @@ async def get_todos_top_author():
 @app_router.post("/books")
 async def insert_book(todo: Todo):
     todo = todo.dict()
-    todo = todo_serializer(collection.insert_one(dict(todo)))
+    todo = collection.insert_one(todo)
+    todo = todo_serializer(collection.find_one({"_id": todo.inserted_id}))
     return {"data": todo}
 
 @app_router.put("/books/{book_id}")
 async def update_book(todo: Todo, book_id:str=Path(...,min_length=24, max_length=24)):
     todo = todo.dict()
-    todo = todo_serializer(collection.find_one_and_update({"_id": ObjectId(book_id)}, {"$set": dict(todo)}, return_document=True))
+    todo = todo_serializer(collection.find_one_and_update({"_id": ObjectId(book_id)}, {"$set": todo}, return_document=True))
     return {"data": todo}
 
 @app_router.delete("/books/{book_id}")
