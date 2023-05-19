@@ -124,3 +124,52 @@ Expected Response:
   ]
 }
 ```
+
+### GET /books/{book_id} -- Retrieves a specific book by ID
+Paramters: 24 character string (e.g 6467e815bdc581f6e78220db) 
+
+Expected Response: 
+```
+{
+  "Results": [
+    {
+      "id": "6467e815bdc581f6e78220db",
+      "title": "My Book11",
+      "author": "Someone9",
+      "description": "This is a sample book11",
+      "price": 0.99,
+      "stock": 5,
+      "sales": 0
+    }
+  ]
+}
+```
+### POST /books -- Add a new book to the store
+Paramters: None
+Request Body:
+```
+{
+  "title": "My Book12",
+  "author": "Someone10",
+  "description": "This is a sample book 12",
+  "price": 9.99,
+  "stock": 10,
+  "sales": 2
+}
+```
+
+Expected Response:
+```
+{
+  "data": {
+    "id": "646803e05a4d484aaea8ded8",
+    "title": "My Book12",
+    "author": "Someone10",
+    "description": "This is a sample book 12",
+    "price": 9.99,
+    "stock": 10,
+    "sales": 2
+  }
+}
+```
+
