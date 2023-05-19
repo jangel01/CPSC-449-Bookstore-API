@@ -95,7 +95,7 @@ async def update_book(todo: Todo, book_id:str=Path(...,min_length=24, max_length
 
 @app_router.delete("/books/{book_id}")
 async def delete_book(book_id:str=Path(...,min_length=24, max_length=24)):
-    todo = collection.find_one_and_delete({"_id": ObjectId(book_id)})
+    todo = todo_serializer(collection.find_one_and_delete({"_id": ObjectId(book_id)}))
     return {"data": todo}
 
 @app_router.get("/search")
