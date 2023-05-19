@@ -88,6 +88,18 @@ async def delete_book(book_id:str=Path(...,min_length=24, max_length=24)):
 
 # search book by title, author, minPrice, maxPrice
 @app_router.get("/search")
-async def search_book(title: str, author: str, minPrice: float, maxPrice: float):
-    todo = todos_serializer(collection.find({"title": title, "author": author, "price": {"$gte": minPrice, "$lte": maxPrice}}))
+async def search_book(title: str = None, author: str = None, minPrice: float = None, maxPrice: float = None):
+    query = {}
+    
+    if title is not None:
+        query["title"] = title
+    if author is not None:
+        query["author"] = author
+    if minPrice is not None:
+        query["price"] = {"$gte": minPrice}
+    if maxPrice is not None:
+        query["price"] = {"$lte": maxPrice}
+
+    todo = todos_serializer(collection.find(query))
+    # todo = todos_serializer(collection.find({"title": title, "author": author, "price": {"$gte": minPrice, "$lte": maxPrice}}))
     return {"data": todo}
