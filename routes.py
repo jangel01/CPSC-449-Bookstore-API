@@ -4,6 +4,7 @@ from models import Todo
 from schema import todo_serializer, todos_serializer
 from bson.objectid import ObjectId
 from fastapi.responses import HTMLResponse
+from fastapi import HTTPException, status
 
 app_router = APIRouter()
 @app_router.get("/")
@@ -90,12 +91,18 @@ async def insert_book(todo: Todo):
 @app_router.put("/books/{book_id}")
 async def update_book(todo: Todo, book_id:str=Path(...,min_length=24, max_length=24)):
     todo = todo.dict()
-    todo = todo_serializer(collection.find_one_and_update({"_id": ObjectId(book_id)}, {"$set": todo}, return_document=True))
+    todo = collection.find_one_and_update({"_id": ObjectId(book_id)}, {"$set": todo}, return_document=True)
+    if todo is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
+    todo = todo_serializer(todo)
     return {"data": todo}
 
 @app_router.delete("/books/{book_id}")
 async def delete_book(book_id:str=Path(...,min_length=24, max_length=24)):
-    todo = todo_serializer(collection.find_one_and_delete({"_id": ObjectId(book_id)}))
+    todo = collection.find_one({"_id": ObjectId(book_id)})
+    if todo is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
+    collection.delete_one({"_id": ObjectId(book_id)})
     return {"data": todo}
 
 @app_router.get("/search")
