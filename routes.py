@@ -80,10 +80,10 @@ async def update_book(todo: Todo, book_id:str=Path(...,min_length=24, max_length
 # delete book by id
 @app_router.delete("/books/{book_id}")
 async def delete_book(book_id:str=Path(...,min_length=24, max_length=24)):
-    todo = collection.find_one({"_id": ObjectId(book_id)})
+    todo = collection.find_one_and_delete({"_id": ObjectId(book_id)})
     if todo is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
-    collection.delete_one({"_id": ObjectId(book_id)})
+    todo = todo_serializer(todo)
     return {"data": todo}
 
 # search book by title, author, minPrice, maxPrice
