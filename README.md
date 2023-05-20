@@ -3,6 +3,9 @@
 ## Group Members: 
 Daniel Chen Wu, Jason Angel
 
+## Videos
+https://drive.google.com/drive/folders/1J_DGsPa8FmbPkvwT4Sanxpv8uEzZOKRr
+
 ## How to run 
 1. Clone the repository to your machine.
 2. Create a database named 'bookstore' and a collection named 'catalog' witihn Mongo Compass. You then need to import catalog.json to the catalog collection.
@@ -12,7 +15,8 @@ Daniel Chen Wu, Jason Angel
     - ```python -m pip install fastapi```
     - ```pip install uvicorn```
     - ```pip install motor```
-5. Head to http://127.0.0.1:8000/docs to test the APIs.
+5. To start the server run the command : ```uvicorn main:app --reload```
+6. Head to http://127.0.0.1:8000/docs to test the APIs.
 
 ## Testing APIs
 ### GET /books -- Retrieve all books
