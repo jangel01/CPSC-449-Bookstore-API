@@ -1,4 +1,4 @@
-CPSC 449 - Final Project
+CPSC 449 - Web Back End Engineering
 
 ## Group Members: 
 Daniel Chen Wu, Jason Angel
