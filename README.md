@@ -1,4 +1,4 @@
-# CPSC 449 - Final Project
+CPSC 449 - Final Project
 
 ## Group Members: 
 Daniel Chen Wu, Jason Angel
